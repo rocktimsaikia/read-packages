@@ -1,0 +1,44 @@
+{
+	"name": "read-packages",
+	"version": "1.0.0",
+	"description": "Reads dependencies of a package.json file",
+	"keywords": [
+		"read",
+		"dependencies",
+		"devDependencies",
+		"package.json",
+		"parse",
+		"package"
+	],
+	"repository": "RocktimSaikia/read-packages",
+	"license": "MIT",
+	"author": {
+		"name": "Rocktim Saikia",
+		"email": "rocktimthedev@gmail.com",
+		"url": "https://rocktim.xyz"
+	},
+	"files": [
+		"index.d.ts",
+		"index.js"
+	],
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"dependencies": {
+		"clean-deep": "^3.4.0",
+		"flatten-obj": "^3.1.1",
+		"parse-json": "^5.1.0"
+	},
+	"devDependencies": {
+		"ava": "^3.13.0",
+		"xo": "^0.33.1"
+	},
+	"xo": {
+		"ignores": [
+			"test/test.js"
+		]
+	},
+	"engines": {
+		"node": ">=12"
+	}
+}

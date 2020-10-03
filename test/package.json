@@ -1,0 +1,14 @@
+{
+	"name": "test-pkg",
+	"version": "1.0.0",
+	"dependencies": {
+		"foo": "~1.0.0"
+	},
+	"devDependencies": {
+		"ava": "^3.13.0",
+		"xo": "^0.33.1"
+	},
+	"engines": {
+		"node": ">=12"
+	}
+}
