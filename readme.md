@@ -68,6 +68,10 @@ Default: `false`
 
 Flattens all types dependencies into a single object.
 
+## Related
+
+- [package-outdated](https://github.com/RocktimSaikia/package-outdated) - Returns the outdated packages of a package.json file
+
 ## Support
 
 <a href="https://www.buymeacoffee.com/7BdaxfI"><img src="https://user-images.githubusercontent.com/33410545/91206759-48d5d180-e725-11ea-93b5-754d98c007af.png" height="60px"/></a>
