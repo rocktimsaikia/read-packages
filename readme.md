@@ -1,4 +1,4 @@
-# read-packages ![build](https://travis-ci.com/RocktimSaikia/read-packages.svg?branch=master) ![license](https://img.shields.io/github/license/rocktimsaikia/read-packages)
+# read-packages ![build](https://travis-ci.com/rocktimsaikia/read-packages.svg?branch=master) ![license](https://img.shields.io/github/license/rocktimsaikia/read-packages)
 
 > Read dependencies of a package.json file.
 
@@ -70,7 +70,8 @@ Flattens all types dependencies into a single object.
 
 ## Related
 
-- [package-outdated](https://github.com/RocktimSaikia/package-outdated) - Returns the outdated packages of a package.json file
+- [package-outdated](https://github.com/rocktimsaikia/package-outdated) - Returns the outdated packages of a package.json file
+- [flatify-obj](https://github.com/rocktimsaikia/flatify-obj) - Flatten javascript objects into a single-depth object
 
 ## Support
 

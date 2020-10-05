@@ -25,8 +25,7 @@
 		"test": "xo && ava"
 	},
 	"dependencies": {
-		"clean-deep": "^3.4.0",
-		"flatten-obj": "^3.1.1",
+		"flatify-obj": "^1.0.0",
 		"parse-json": "^5.1.0"
 	},
 	"devDependencies": {

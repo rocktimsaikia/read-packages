@@ -3,8 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const parseJson = require('parse-json');
-const cleanDeap = require('clean-deep');
-const flattenObject = require('flatten-obj')({onlyLeaves: true});
+const cleanFlatten = require('flatify-obj');
 
 const readFileAsync = util.promisify(fs.readFile);
 
@@ -26,23 +25,21 @@ module.exports = async options => {
 
 	if (options.removePrefix) {
 		const packages = destructurePackages(parseJson(json.replace(/[\^~]/g, '')));
-		const updatedPackages = cleanDeap({...packages}, {emptyObjects: true});
 
 		if (options.flattenPackages) {
-			return flattenObject(updatedPackages);
+			return cleanFlatten(packages, {onlyLeaves: true});
 		}
 
-		return updatedPackages;
+		return packages;
 	}
 
 	const packages = destructurePackages(parseJson(json));
-	const updatedPackages = cleanDeap({...packages}, {emptyObjects: true});
 
 	if (options.flattenPackages) {
-		return flattenObject(updatedPackages);
+		return cleanFlatten(packages, {onlyLeaves: true});
 	}
 
-	return updatedPackages;
+	return packages;
 };
 
 module.exports.sync = options => {
@@ -58,21 +55,19 @@ module.exports.sync = options => {
 
 	if (options.removePrefix) {
 		const packages = destructurePackages(parseJson(json.replace(/[\^~]/g, '')));
-		const updatedPackages = cleanDeap({...packages}, {emptyObjects: true});
 
 		if (options.flattenPackages) {
-			return flattenObject(updatedPackages);
+			return cleanFlatten(packages, {onlyLeaves: true});
 		}
 
-		return updatedPackages;
+		return packages;
 	}
 
 	const packages = destructurePackages(parseJson(json));
-	const updatedPackages = cleanDeap({...packages}, {emptyObjects: true});
 
 	if (options.flattenPackages) {
-		return flattenObject(updatedPackages);
+		return cleanFlatten(packages, {onlyLeaves: true});
 	}
 
-	return updatedPackages;
+	return packages;
 };
