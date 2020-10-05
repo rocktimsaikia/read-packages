@@ -1,6 +1,6 @@
 {
 	"name": "read-packages",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Reads dependencies of a package.json file",
 	"keywords": [
 		"read",
