@@ -17,6 +17,8 @@ test('async', async t => {
 test('async - dir option', async t => {
 	const dependencies_ = await readDep({dir: rootDir});
 	t.truthy(dependencies_.hasOwnProperty('dependencies'));
+	t.false(dependencies_.hasOwnProperty('peerDependencies'));
+	t.false(dependencies_.hasOwnProperty('optionalDependencies'));
 });
 
 test('async - removePrefix option', async t => {
