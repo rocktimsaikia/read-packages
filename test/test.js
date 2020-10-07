@@ -10,6 +10,8 @@ const rootDir = path.join(__dirname, '..');
 test('async', async t => {
 	const dependencies_ = await readDep();
 	t.truthy(dependencies_.hasOwnProperty('dependencies'));
+	t.false(dependencies_.hasOwnProperty('peerDependencies'));
+	t.false(dependencies_.hasOwnProperty('optionalDependencies'));
 });
 
 test('async - dir option', async t => {

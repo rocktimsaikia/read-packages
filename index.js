@@ -3,7 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const parseJson = require('parse-json');
-const cleanFlatten = require('flatify-obj');
+const flatifyObject = require('flatify-obj');
+const cleanDeep = require('clean-deep');
 
 const readFileAsync = util.promisify(fs.readFile);
 
@@ -23,23 +24,23 @@ module.exports = async options => {
 	const filePath = path.resolve(options.dir, 'package.json');
 	const json = await readFileAsync(filePath, 'utf8');
 
+	const mergeDependencies = packages => {
+		if (options.flattenPackages) {
+			return cleanDeep(flatifyObject(packages, {onlyLeaves: true}));
+		}
+
+		return cleanDeep(packages);
+	};
+
 	if (options.removePrefix) {
 		const packages = destructurePackages(parseJson(json.replace(/[\^~]/g, '')));
 
-		if (options.flattenPackages) {
-			return cleanFlatten(packages, {onlyLeaves: true});
-		}
-
-		return packages;
+		return mergeDependencies(packages);
 	}
 
 	const packages = destructurePackages(parseJson(json));
 
-	if (options.flattenPackages) {
-		return cleanFlatten(packages, {onlyLeaves: true});
-	}
-
-	return packages;
+	return mergeDependencies(packages);
 };
 
 module.exports.sync = options => {
@@ -57,7 +58,7 @@ module.exports.sync = options => {
 		const packages = destructurePackages(parseJson(json.replace(/[\^~]/g, '')));
 
 		if (options.flattenPackages) {
-			return cleanFlatten(packages, {onlyLeaves: true});
+			return flatifyObject(packages, {onlyLeaves: true});
 		}
 
 		return packages;
@@ -66,8 +67,8 @@ module.exports.sync = options => {
 	const packages = destructurePackages(parseJson(json));
 
 	if (options.flattenPackages) {
-		return cleanFlatten(packages, {onlyLeaves: true});
+		return flatifyObject(packages, {onlyLeaves: true});
 	}
 
-	return packages;
+	return cleanDeep(packages);
 };
