@@ -54,21 +54,21 @@ module.exports.sync = options => {
 	const filePath = path.resolve(options.dir, 'package.json');
 	const json = fs.readFileSync(filePath, 'utf8');
 
+	const mergeDependencies = packages => {
+		if (options.flattenPackages) {
+			return cleanDeep(flatifyObject(packages, {onlyLeaves: true}));
+		}
+
+		return cleanDeep(packages);
+	};
+
 	if (options.removePrefix) {
 		const packages = destructurePackages(parseJson(json.replace(/[\^~]/g, '')));
 
-		if (options.flattenPackages) {
-			return flatifyObject(packages, {onlyLeaves: true});
-		}
-
-		return packages;
+		return mergeDependencies(packages);
 	}
 
 	const packages = destructurePackages(parseJson(json));
 
-	if (options.flattenPackages) {
-		return flatifyObject(packages, {onlyLeaves: true});
-	}
-
-	return cleanDeep(packages);
+	return mergeDependencies(packages);
 };
